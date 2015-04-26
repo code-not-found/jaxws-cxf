@@ -19,8 +19,8 @@ public class CxfClient {
     @Autowired
     private Environment environment;
 
-    // client implementation that uses the helloWorldJaxWsProxyBean to call the
-    // Hello World service
+    // client implementation that will use the helloWorldJaxWsProxyBean to call
+    // the Hello World service
     @Bean(name = "helloWorldClientImplBean")
     public HelloWorldClientImpl helloWorldClientImpl() {
         return new HelloWorldClientImpl();

@@ -11,8 +11,8 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
         .properties file on the classpath -->
     <context:property-placeholder location="classpath:cxf.properties" />
 
-    <!-- client implementation that uses the helloWorldClientBean to call 
-        the Hello World service -->
+    <!-- client implementation that will use the helloWorldClientBean to 
+        call the Hello World service -->
     <bean id="helloWorldClientImplBean" class="com.codenotfound.soap.http.cxf.HelloWorldClientImpl" />
 
     <!-- CXF client for the Hello World service -->
