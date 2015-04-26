@@ -8,7 +8,7 @@
     <version>1.0</version>
     <packaging>jar</packaging>
 
-    <name>JAX-WS - CXF logging client request and response SOAP messages using Logback</name>
+    <name>JAX-WS - CXF logging client request and response SOAP messages using Logback and Maven</name>
     <url>http://www.codenotfound.com</url>
 
     <prerequisites>
