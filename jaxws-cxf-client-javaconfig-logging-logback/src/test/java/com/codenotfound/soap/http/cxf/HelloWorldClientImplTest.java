@@ -24,14 +24,9 @@ public class HelloWorldClientImplTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
-        /* create a server endpoint for the Hello World service */
-        // create a JaxWsServerFactoryBean
         JaxWsServerFactoryBean jaxWsServerFactoryBean = new JaxWsServerFactoryBean();
-        // set the mock implementation of the Hello World service
         jaxWsServerFactoryBean.setServiceBean(new HelloWorldServerImplMock());
-        // set the endpoint address
         jaxWsServerFactoryBean.setAddress(ENDPOINT_ADDRESS);
-        // create the server endpoint
         jaxWsServerFactoryBean.create();
     }
 
