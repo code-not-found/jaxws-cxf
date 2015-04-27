@@ -5,7 +5,9 @@ import com.codenotfound.services.helloworld.HelloWorldPortType;
 import com.codenotfound.services.helloworld.ObjectFactory;
 import com.codenotfound.services.helloworld.Person;
 
-//mock implementation of the Hello World service
+/**
+ * mock implementation of the Hello World service
+ */
 public class HelloWorldServerImplMock implements HelloWorldPortType {
 
     @Override
