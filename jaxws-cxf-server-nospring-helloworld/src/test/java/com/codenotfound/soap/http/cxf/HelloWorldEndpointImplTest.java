@@ -7,13 +7,10 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 import com.codenotfound.services.helloworld.Person;
-import com.codenotfound.soap.http.cxf.HelloWorldEndpointImpl;
 
 public class HelloWorldEndpointImplTest {
 
     private static String ENDPOINT_ADDRESS = "http://localhost:9090/cnf/services/helloworld";
-
-    private static HelloWorldClientImplMock helloWorldClientImplMock;
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -26,10 +23,6 @@ public class HelloWorldEndpointImplTest {
         jaxWsServerFactoryBean.setAddress(ENDPOINT_ADDRESS);
         // create the server
         jaxWsServerFactoryBean.create();
-
-        // create a client mock to make the service call
-        helloWorldClientImplMock = new HelloWorldClientImplMock(
-                ENDPOINT_ADDRESS);
     }
 
     @Test
@@ -38,7 +31,7 @@ public class HelloWorldEndpointImplTest {
         person.setFirstName("John");
         person.setLastName("Watson");
 
-        assertEquals("Hello John Watson!",
-                helloWorldClientImplMock.sayHello(person));
+        assertEquals("Hello John Watson!", new HelloWorldClientImplMock(
+                ENDPOINT_ADDRESS).sayHello(person));
     }
 }
