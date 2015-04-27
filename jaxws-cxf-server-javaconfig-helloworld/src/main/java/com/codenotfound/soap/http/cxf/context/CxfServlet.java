@@ -10,19 +10,21 @@ import org.springframework.context.annotation.ImportResource;
 import com.codenotfound.soap.http.cxf.HelloWorldEndpointImpl;
 
 @Configuration
-// load the CXF bean definitions in the Spring context
+// load the CXF bean definitions (which contain a CXF Bus) in the Spring context
 @ImportResource({ "classpath:META-INF/cxf/cxf.xml" })
 public class CxfServlet {
 
-    // autowire the CXF bus environment
+    // auto-wire the CXF Bus created by the 'cxf.cml' import
     @Autowired
-    Bus bus;
+    Bus cxf;
 
-    // create an Endpoint for the CXF Hello World service
+    // create an endpoint for the CXF Hello World service
     @Bean(name = "helloWorldProviderBean")
     public EndpointImpl helloWorldEndpoint() {
         EndpointImpl endpoint = new EndpointImpl(new HelloWorldEndpointImpl());
         endpoint.setAddress("/helloworld");
+        // set the CXF bus on the endpoint
+        endpoint.setBus(cxf);
         endpoint.publish();
 
         return endpoint;
