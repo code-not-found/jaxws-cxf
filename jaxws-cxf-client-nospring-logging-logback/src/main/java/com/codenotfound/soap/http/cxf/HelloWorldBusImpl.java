@@ -3,7 +3,7 @@ package com.codenotfound.soap.http.cxf;
 import java.util.ArrayList;
 
 import org.apache.cxf.Bus;
-import org.apache.cxf.bus.CXFBusFactory;
+import org.apache.cxf.BusFactory;
 import org.apache.cxf.feature.Feature;
 import org.apache.cxf.feature.LoggingFeature;
 
@@ -14,8 +14,8 @@ public class HelloWorldBusImpl {
     public HelloWorldBusImpl() {
         // note: if you create a bus when there is no default bus in effect,
         // that bus will become the default bus
-        bus = new CXFBusFactory().createBus();
-
+        bus = BusFactory.newInstance().createBus();
+        // add the loggingFeature
         addFeatures();
     }
 

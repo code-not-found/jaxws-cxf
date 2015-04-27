@@ -3,8 +3,6 @@ package com.codenotfound.soap.http.cxf.servlet;
 import javax.servlet.ServletConfig;
 import javax.xml.ws.Endpoint;
 
-import org.apache.cxf.Bus;
-import org.apache.cxf.BusFactory;
 import org.apache.cxf.transport.servlet.CXFNonSpringServlet;
 
 import com.codenotfound.soap.http.cxf.HelloWorldEndpointImpl;
@@ -15,10 +13,9 @@ public class HelloWorldCXFNonSpringServlet extends CXFNonSpringServlet {
 
     @Override
     public void loadBus(ServletConfig servletConfig) {
+        // create a bus
         super.loadBus(servletConfig);
-
-        Bus bus = getBus();
-        BusFactory.setDefaultBus(bus);
+        // CXF Endpoint for the Hello World service
         Endpoint.publish("/helloworld", new HelloWorldEndpointImpl());
     }
 }
