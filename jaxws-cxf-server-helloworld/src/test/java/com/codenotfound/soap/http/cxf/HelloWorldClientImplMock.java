@@ -6,7 +6,9 @@ import com.codenotfound.services.helloworld.Greeting;
 import com.codenotfound.services.helloworld.HelloWorldPortType;
 import com.codenotfound.services.helloworld.Person;
 
-// the mock implementation of the Hello World client
+/**
+ * the mock implementation of the Hello World client
+ */
 public class HelloWorldClientImplMock {
 
     private HelloWorldPortType helloWorldClientProxy;

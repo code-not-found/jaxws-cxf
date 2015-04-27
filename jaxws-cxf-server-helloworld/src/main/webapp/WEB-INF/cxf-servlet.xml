@@ -5,7 +5,7 @@
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
-    <!-- CXF endpoint for the Hello World service -->
+    <!-- CXF Endpoint for the Hello World service -->
     <jaxws:endpoint id="helloWorldImplBean"
         implementor="com.codenotfound.soap.http.cxf.HelloWorldEndpointImpl"
         address="/helloworld">
