@@ -15,7 +15,7 @@ import com.codenotfound.soap.http.cxf.HelloWorldClientImpl;
 @PropertySource(value = "classpath:cxf.properties")
 public class CxfClient {
 
-    // autowire the Spring environment
+    // auto-wire the Spring environment
     @Autowired
     private Environment environment;
 

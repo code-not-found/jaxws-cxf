@@ -29,7 +29,7 @@ public class HelloWorldClientImplTest {
         JaxWsServerFactoryBean jaxWsServerFactoryBean = new JaxWsServerFactoryBean();
         // set the mock implementation of the Hello World service
         jaxWsServerFactoryBean.setServiceBean(new HelloWorldServerImplMock());
-        // set the endpoint address
+        // set the address at which the Hello World endpoint will be exposed
         jaxWsServerFactoryBean.setAddress(ENDPOINT_ADDRESS);
         // create the server endpoint
         jaxWsServerFactoryBean.create();
