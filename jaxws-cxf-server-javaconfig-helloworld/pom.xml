@@ -8,7 +8,7 @@
     <version>1.0</version>
     <packaging>war</packaging>
 
-    <name>JAX-WS - CXF Spring JavaConfig Hello World web service using Jetty and Maven</name>
+    <name>JAX-WS - CXF Spring JavaConfig Hello World web service implementation using Jetty and Maven</name>
     <url>http://www.codenotfound.com</url>
 
     <prerequisites>
