@@ -1,6 +1,7 @@
 package com.codenotfound.soap.http.cxf.servlet;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletConfig;
 import javax.xml.ws.Endpoint;
@@ -26,7 +27,7 @@ public class HelloWorldCXFNonSpringServlet extends CXFNonSpringServlet {
     }
 
     private void addFeatures() {
-        ArrayList<Feature> features = new ArrayList<Feature>();
+        List<Feature> features = new ArrayList<Feature>();
 
         // create a loggingFeature that will log all received/sent messages
         LoggingFeature loggingFeature = new LoggingFeature();

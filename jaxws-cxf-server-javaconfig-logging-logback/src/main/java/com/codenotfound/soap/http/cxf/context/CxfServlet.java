@@ -1,6 +1,7 @@
 package com.codenotfound.soap.http.cxf.context;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.feature.Feature;
@@ -46,7 +47,7 @@ public class CxfServlet {
     // add the loggingFeature to the auto-wired CXF bus
     @Bean(name = "bus")
     Bus bus() {
-        ArrayList<Feature> features = new ArrayList<Feature>();
+        List<Feature> features = new ArrayList<Feature>();
         features.add(loggingFeature());
         cxf.setFeatures(features);
 
