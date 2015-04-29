@@ -1,6 +1,7 @@
 package com.codenotfound.soap.http.cxf;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.cxf.Bus;
 import org.apache.cxf.BusFactory;
@@ -24,7 +25,7 @@ public class HelloWorldBusImpl {
     }
 
     private void addFeatures() {
-        ArrayList<Feature> features = new ArrayList<Feature>();
+        List<Feature> features = new ArrayList<Feature>();
 
         // create a loggingFeature that will log all received/sent messages
         LoggingFeature loggingFeature = new LoggingFeature();
