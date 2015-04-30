@@ -33,22 +33,19 @@ public class HelloWorldClientImplMock {
 
     public String sayHello(Person person, String userName, String password) {
         // set the user credentials
-        setCredentials(userName, password);
+        setBasicAuthentication(userName, password);
 
-        Greeting greeting = helloWorldClientProxy.sayHello(person);
-        String result = greeting.getText();
-
-        return result;
+        return sayHello(person);
     }
 
-    private void setCredentials(String userName, String password) {
+    private void setBasicAuthentication(String userName, String password) {
         // the BindingProvider provides access to the protocol binding and
         // associated context objects for request/response message processing
         BindingProvider bindingProvider = (BindingProvider) helloWorldClientProxy;
-        // set the user name for authentication
+        // set the user name for basic authentication
         bindingProvider.getRequestContext().put(
                 BindingProvider.USERNAME_PROPERTY, userName);
-        // set the password for authentication
+        // set the password for basic authentication
         bindingProvider.getRequestContext().put(
                 BindingProvider.PASSWORD_PROPERTY, password);
     }

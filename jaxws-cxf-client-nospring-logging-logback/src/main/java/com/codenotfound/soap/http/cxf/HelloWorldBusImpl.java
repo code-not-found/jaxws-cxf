@@ -16,6 +16,7 @@ public class HelloWorldBusImpl {
         // note: if you create a bus when there is no default bus in effect,
         // that bus will become the default bus
         bus = BusFactory.newInstance().createBus();
+        
         // add the loggingFeature
         addFeatures();
     }
@@ -25,11 +26,11 @@ public class HelloWorldBusImpl {
     }
 
     private void addFeatures() {
-        List<Feature> features = new ArrayList<Feature>();
-
         // create a loggingFeature that will log all received/sent messages
         LoggingFeature loggingFeature = new LoggingFeature();
         loggingFeature.setPrettyLogging(true);
+
+        List<Feature> features = new ArrayList<Feature>();
         features.add(loggingFeature);
 
         // set the features on the CXF bus
