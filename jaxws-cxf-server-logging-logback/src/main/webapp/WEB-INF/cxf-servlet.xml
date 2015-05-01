@@ -12,7 +12,7 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
         address="/helloworld">
     </jaxws:endpoint>
 
-    <!-- create a loggingFeature that will log all received/sent messages -->
+    <!-- create a LoggingFeature that will log all received/sent messages -->
     <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
         <property name="prettyLogging" value="true" />
     </bean>
