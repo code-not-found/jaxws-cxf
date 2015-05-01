@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:cxf="http://cxf.apache.org/core" xmlns:jaxws="http://cxf.apache.org/jaxws"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://cxf.apache.org/core http://cxf.apache.org/schemas/core.xsd
+http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+    <jaxws:endpoint id="helloWorldImplBean"
+        implementor="com.codenotfound.soap.http.cxf.HelloWorldEndpointImpl"
+        address="/helloworld">
+    </jaxws:endpoint>
+
+    <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
+        <property name="prettyLogging" value="true" />
+    </bean>
+
+    <!-- create a JAASLoginInterceptor that will authenticate received requests -->
+    <bean id="jaasLoginInterceptor"
+        class="org.apache.cxf.interceptor.security.JAASLoginInterceptor">
+        <property name="contextName" value="jaasContext" />
+    </bean>
+
+    <!-- add the jaasLoginInterceptor to the CXF bus on the InInterceptors -->
+    <cxf:bus>
+        <cxf:inInterceptors>
+            <ref bean="jaasLoginInterceptor" />
+        </cxf:inInterceptors>
+        <cxf:features>
+            <ref bean="loggingFeature" />
+        </cxf:features>
+    </cxf:bus>
+
+</beans>
