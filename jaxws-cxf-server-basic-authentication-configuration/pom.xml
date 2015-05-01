@@ -129,14 +129,15 @@
                     <stopPort>9005</stopPort>
                     <stopKey>STOP</stopKey>
                     <daemon>true</daemon>
-                    <systemProperties>
-                        <!-- JAAS will use the below property to find the
-                            login module configuration -->
-                        <systemProperty>
-                            <name>java.security.auth.login.config</name>
-                            <value>${project.basedir}/src/main/resources/jaas-login.conf</value>
-                        </systemProperty>
-                    </systemProperties>
+                    <!-- configure a login service for the realm (basic-authentication) 
+                        declared in the web.xml -->
+                    <loginServices>
+                        <loginService
+                            implementation="org.eclipse.jetty.security.HashLoginService">
+                            <name>basic-authentication</name>
+                            <config>${project.basedir}/src/main/resources/jetty-users.properties</config>
+                        </loginService>
+                    </loginServices>
                 </configuration>
                 <executions>
                     <execution>

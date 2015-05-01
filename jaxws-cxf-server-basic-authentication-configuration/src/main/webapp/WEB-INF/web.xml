@@ -14,4 +14,28 @@
         <url-pattern>/cnf/services/*</url-pattern>
     </servlet-mapping>
 
+    <!-- configure a security-constraint to be applied to the specified URL 
+        pattern and only allow authenticated users with the CLIENT role -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>secured-services</web-resource-name>
+            <url-pattern>/cnf/services/secured/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>CLIENT</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <!-- use basic authentication to pass credentials -->
+    <login-config>
+        <auth-method>BASIC</auth-method>
+        <realm-name>basic-authentication</realm-name>
+    </login-config>
+
+    <!-- define the CLIENT role -->
+    <security-role>
+        <description>client access</description>
+        <role-name>CLIENT</role-name>
+    </security-role>
+
 </web-app>

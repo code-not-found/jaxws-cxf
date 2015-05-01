@@ -9,25 +9,14 @@ http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
 
     <jaxws:endpoint id="helloWorldImplBean"
         implementor="com.codenotfound.soap.http.cxf.HelloWorldEndpointImpl"
-        address="/helloworld">
+        address="/secured/helloworld">
     </jaxws:endpoint>
-
-    <!-- create a JAASLoginInterceptor that will in order to authenticate
-        a current user and populate a CXF SecurityContext -->
-    <bean id="jaasLoginInterceptor"
-        class="org.apache.cxf.interceptor.security.JAASLoginInterceptor">
-        <property name="contextName" value="jaasContext" />
-    </bean>
 
     <bean id="loggingFeature" class="org.apache.cxf.feature.LoggingFeature">
         <property name="prettyLogging" value="true" />
     </bean>
 
-    <!-- add the authenticationInterceptor to the CXF bus -->
     <cxf:bus>
-        <cxf:inInterceptors>
-            <ref bean="jaasLoginInterceptor" />
-        </cxf:inInterceptors>
         <cxf:features>
             <ref bean="loggingFeature" />
         </cxf:features>

@@ -3,7 +3,7 @@ package com.codenotfound.soap.http.cxf;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.fail;
 
-import javax.xml.ws.soap.SOAPFaultException;
+import javax.xml.ws.WebServiceException;
 
 import org.junit.Test;
 
@@ -11,7 +11,7 @@ import com.codenotfound.services.helloworld.Person;
 
 public class HelloWorldEndpointImplIT {
 
-    private static String ENDPOINT_ADDRESS = "http://localhost:9090/cnf/services/helloworld";
+    private static String ENDPOINT_ADDRESS = "http://localhost:9090/cnf/services/secured/helloworld";
 
     @Test
     public void testSayHelloProxy() {
@@ -33,10 +33,10 @@ public class HelloWorldEndpointImplIT {
             new HelloWorldClientImplMock(ENDPOINT_ADDRESS).sayHello(person);
             fail("no credentials should fail");
 
-        } catch (SOAPFaultException soapFaultException) {
+        } catch (WebServiceException webServiceException) {
             assertEquals(
-                    "Authentication required but no user or password was supplied",
-                    soapFaultException.getFault().getFaultString());
+                    "HTTP response '401: Unauthorized' when communicating with http://localhost:9090/cnf/services/secured/helloworld",
+                    webServiceException.getCause().getLocalizedMessage());
         }
     }
 
@@ -51,10 +51,10 @@ public class HelloWorldEndpointImplIT {
                     "mycroft.holmes", "h0lm35");
             fail("unknown user should fail");
 
-        } catch (SOAPFaultException soapFaultException) {
+        } catch (WebServiceException webServiceException) {
             assertEquals(
-                    "Authentication failed (details can be found in server log)",
-                    soapFaultException.getFault().getFaultString());
+                    "HTTP response '401: Unauthorized' when communicating with http://localhost:9090/cnf/services/secured/helloworld",
+                    webServiceException.getCause().getLocalizedMessage());
         }
     }
 
@@ -69,10 +69,10 @@ public class HelloWorldEndpointImplIT {
                     "jim.moriarty", "moriarty");
             fail("incorrect password should fail");
 
-        } catch (SOAPFaultException soapFaultException) {
+        } catch (WebServiceException webServiceException) {
             assertEquals(
-                    "Authentication failed (details can be found in server log)",
-                    soapFaultException.getFault().getFaultString());
+                    "HTTP response '401: Unauthorized' when communicating with http://localhost:9090/cnf/services/secured/helloworld",
+                    webServiceException.getCause().getLocalizedMessage());
         }
     }
 }
