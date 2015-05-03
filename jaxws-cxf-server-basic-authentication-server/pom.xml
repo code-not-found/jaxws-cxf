@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.codenotfound</groupId>
-    <artifactId>jaxws-cxf-server-basic-authentication-configuration</artifactId>
+    <artifactId>jaxws-cxf-server-basic-authentication-server</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
 
