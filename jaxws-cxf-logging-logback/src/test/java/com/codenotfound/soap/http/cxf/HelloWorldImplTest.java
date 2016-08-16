@@ -3,6 +3,8 @@ package com.codenotfound.soap.http.cxf;
 import static org.junit.Assert.assertEquals;
 
 import org.apache.cxf.feature.LoggingFeature;
+import org.apache.cxf.interceptor.LoggingInInterceptor;
+import org.apache.cxf.interceptor.LoggingOutInterceptor;
 import org.apache.cxf.jaxws.JaxWsProxyFactoryBean;
 import org.apache.cxf.jaxws.JaxWsServerFactoryBean;
 import org.junit.BeforeClass;
@@ -37,26 +39,37 @@ public class HelloWorldImplTest {
     private static void createServerEndpoint() {
         JaxWsServerFactoryBean jaxWsServerFactoryBean = new JaxWsServerFactoryBean();
 
-        // adding loggingFeature to print the received/sent messages
+        // create the loggingFeature
         LoggingFeature loggingFeature = new LoggingFeature();
         loggingFeature.setPrettyLogging(true);
 
+        // add the loggingFeature to print the received/sent messages
         jaxWsServerFactoryBean.getFeatures().add(loggingFeature);
 
         HelloWorldImpl implementor = new HelloWorldImpl();
         jaxWsServerFactoryBean.setServiceBean(implementor);
         jaxWsServerFactoryBean.setAddress(ENDPOINT_ADDRESS);
+
         jaxWsServerFactoryBean.create();
     }
 
     private static HelloWorldPortType createClientProxy() {
         JaxWsProxyFactoryBean jaxWsProxyFactoryBean = new JaxWsProxyFactoryBean();
 
-        // adding loggingFeature to print the received/sent messages
-        LoggingFeature loggingFeature = new LoggingFeature();
-        loggingFeature.setPrettyLogging(true);
+        // create the loggingInInterceptor and loggingOutInterceptor
+        LoggingInInterceptor loggingInInterceptor = new LoggingInInterceptor();
+        loggingInInterceptor.setPrettyLogging(true);
+        LoggingOutInterceptor loggingOutInterceptor = new LoggingOutInterceptor();
+        loggingOutInterceptor.setPrettyLogging(true);
 
-        jaxWsProxyFactoryBean.getFeatures().add(loggingFeature);
+        // add loggingInterceptor to print the received/sent messages
+        jaxWsProxyFactoryBean.getInInterceptors().add(loggingInInterceptor);
+        jaxWsProxyFactoryBean.getInFaultInterceptors()
+                .add(loggingInInterceptor);
+        jaxWsProxyFactoryBean.getOutInterceptors().add(loggingOutInterceptor);
+        jaxWsProxyFactoryBean.getOutFaultInterceptors()
+                .add(loggingOutInterceptor);
+
         jaxWsProxyFactoryBean.setServiceClass(HelloWorldPortType.class);
         jaxWsProxyFactoryBean.setAddress(ENDPOINT_ADDRESS);
 

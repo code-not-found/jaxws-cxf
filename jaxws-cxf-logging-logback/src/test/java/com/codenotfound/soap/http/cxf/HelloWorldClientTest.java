@@ -40,15 +40,17 @@ public class HelloWorldClientTest {
     private static void createServerEndpoint() {
         JaxWsServerFactoryBean jaxWsServerFactoryBean = new JaxWsServerFactoryBean();
 
-        // adding loggingFeature to print the received/sent messages
+        // create the loggingFeature
         LoggingFeature loggingFeature = new LoggingFeature();
         loggingFeature.setPrettyLogging(true);
 
+        // adding loggingFeature to print the received/sent messages
         jaxWsServerFactoryBean.getFeatures().add(loggingFeature);
 
         HelloWorldImpl implementor = new HelloWorldImpl();
         jaxWsServerFactoryBean.setServiceBean(implementor);
         jaxWsServerFactoryBean.setAddress(ENDPOINT_ADDRESS);
+
         jaxWsServerFactoryBean.create();
     }
 }
